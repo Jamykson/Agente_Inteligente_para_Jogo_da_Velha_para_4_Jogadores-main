@@ -18,18 +18,19 @@ SYMBOLS = {
 }
 
 REWARDS = {
-    'WIN': 50,         # Aumentei muito: Ganhar é tudo.
-    'LOSS': -100,      # Perder é inaceitável (Dobrei a punição)
-    'DRAW': -2,        # Empate é levemente ruim
+    'WIN': 100,        # <--- ALTERADO: Aumentado para 100 (Prioridade máxima)
+    'LOSS': -100,      # Mantido: Perder é inaceitável
+    'DRAW': -10,       # <--- AJUSTADO: -2 era pouco. Empate deve doer mais que um passo normal.
     'INVALID': -200,   # Proibido errar casa
     'STEP': -1,
-    'THREAT': 5,        # Aumentei o incentivo para criar jogadas de ataque
-    'IGNORE_DEFENSE': -40
+    'THREAT': 2,       # <--- AJUSTADO: Reduzido de 5 para 2. Evita que ele "enrole" criando ameaças em vez de ganhar.
+    'IGNORE_DEFENSE': -50 # <--- AJUSTADO: Punição mais severa para ignorar bloqueios.
 }
 
-EPISODES = 400_000
+# Parâmetros de Treinamento
+EPISODES = 600_000      # <--- AUMENTADO: Necessário para o agente aprender todas as simetrias perfeitamente.
 LEARNING_RATE = 0.1
-DISCOUNT_FACTOR = 0.99  # Aumentei para 0.99. Ele vai pensar MUITO no futuro.
+DISCOUNT_FACTOR = 0.99  # Visão de longo prazo
 EPSILON_START = 1.0
-EPSILON_MIN = 0.001     # <--- O SEGREDO: Reduzir o erro aleatório final
-EPSILON_DECAY = 0.99999 # Decaimento super lento para cobrir os 400k episódios
+EPSILON_MIN = 0.001
+EPSILON_DECAY = 0.999992 # <--- AJUSTADO: Decaimento mais lento para cobrir os 600k episódios.
