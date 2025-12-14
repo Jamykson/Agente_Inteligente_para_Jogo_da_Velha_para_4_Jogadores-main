@@ -3,3 +3,5 @@
  python train.py
 
  python play.py
+
+ streamlit run app.py
